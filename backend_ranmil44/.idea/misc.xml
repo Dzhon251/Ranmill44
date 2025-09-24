@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="ec.mil.ejercito.dimt.dhp.mcsv.dimt.dhp.model.entity.UsadoEnResultSetMapping" />
+      <item index="1" class="java.lang.String" itemvalue="ec.mil.ejercito.dimt.dhp.mcsvsueldos.model.entity.UsadoEnResultSetMapping" />
+      <item index="2" class="java.lang.String" itemvalue="ec.mil.ejercito.dimt.dhp.mcsvunidadeseducativas.model.entity.UsadoEnResultSetMapping" />
+    </list>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/mcsv-unidades-educativas/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-sueldos/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-dimt-dhp/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-juridico/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-dimt-dhp/mcsv-juridico/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-derogatoria/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/mcsv-derogatoria/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-dimt-dhp/mcsv-juridico/pom.xml" />
+        <option value="$PROJECT_DIR$/mcsv-juridico/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="ms-21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

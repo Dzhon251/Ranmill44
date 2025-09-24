@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DeclaracionHistorialPersonal.iml" filepath="$PROJECT_DIR$/DeclaracionHistorialPersonal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcsv-dimt-dhp/mcsv-dimt-dhp.iml" filepath="$PROJECT_DIR$/mcsv-dimt-dhp/mcsv-dimt-dhp.iml" />
+    </modules>
+  </component>
+</project>

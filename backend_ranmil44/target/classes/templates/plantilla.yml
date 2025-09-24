@@ -1,0 +1,123 @@
+## Todo lo que se encuentra entre llaves {{}} debe ser reemplazado por el valor correspondiente
+## Configuración de microservicio de ejemplo
+## El término "fallback" hace alusión a una opción de contingencia por la cual optar si la opción primaria no está disponible.
+app:
+  # URI del proyecto, con placeholders para dirección, nombre del sistema y funcionalidad del microservicio.
+  # URI de desarrollo local: /dev/dgth/sipercomun/militares
+  # URI de desarrollo en el servidor: dgth/sipercomun/militares
+  project.uri: /dev/dimt/dhp/mscv-dimt-dhp
+  # URL del servidor Keycloak, con una variable de entorno como fallback.
+  keycloak-server: ${IP_DOMINIO_KEYCLOAK_SERVER_PORT:https://qa-sso.ejercito.mil.ec:8443}
+  # URL del servidor gateway, con una variable de entorno como fallback.
+  gateway-server: ${IP_DOMINIO_GATEWAY_SERVER_PORT:http://localhost:8090}
+  # URL del servidor Eureka, con una variable de entorno como fallback.
+  eureka-server: ${IP_DOMINIO_EUREKA_SERVER_PORT:localhost:8761}
+  # Usuario para autenticarse en el servidor Eureka.
+  eureka-user: ${EUREKA_USER:eureka}
+  # Contraseña para autenticarse en el servidor Eureka.
+  eureka-password: ${EUREKA_PASSWORD:eureka2025}
+keycloak:
+  # Nombre del realm de Keycloak, con una variable de entorno como fallback.
+  realm: ${KEYCLOAK_REALM_NAME:realm_intern}
+  # URL del servidor Keycloak.
+  url: ${app.keycloak-server}
+server:
+  # Puerto en el que se ejecutará el servidor, con una variable de entorno como fallback.
+  # 0 de para que se asigne un puerto aleatorio.
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  application:
+    # Nombre de la aplicación Spring, con placeholders.
+    name: mcsv-dimt-dhp-dev
+  datasource:
+
+      # Configuración de la base de datos Oracle 19c.
+    oracle19c:
+      username: INTELIGENCIA
+      password: PINTELIGENCIA-1915
+      url: jdbc:oracle:thin:@10.20.4.20:1539/PRUEBAS
+      driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    # Configuración JPA para Oracle 19c.
+    oracle19c:
+      database: oracle
+      hibernate:
+        naming:
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        open-in-view: false
+        # Imprime en la terminal el query de SQL que se ejecuta desde hibernate
+        show-sql: true
+        database-platform: org.hibernate.dialect.OracleDialect
+        properties:
+          hibernate:
+            format_sql: true
+            default_schema: INTELIGENCIA
+  # Configuración de seguridad OAuth2 para el servidor de recursos JWT que esta en keycloak.
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${keycloak.url}/realms/${keycloak.realm}/protocol/openid-connect/certs
+eureka:
+  # Configuración de la instancia Eureka.
+  instance:
+    # Identificador único de la instancia, compuesto por el nombre de la aplicación y un valor aleatorio.
+    instance-id: ${spring.application.name}:${random.value}
+    # Preferir la dirección IP en lugar del nombre de host para la instancia.
+    preferIpAddress: true
+    # Intervalo en segundos para la renovación del arrendamiento de la instancia.
+    leaseRenewalIntervalInSeconds: 5
+    # Duración en segundos antes de que el arrendamiento de la instancia expire.
+    leaseExpirationDurationInSeconds: 5
+  # Configuración del cliente Eureka.
+  client:
+    # Habilitar el cliente Eureka.
+    enabled: true
+    # Registrar esta instancia con el servidor Eureka.
+    registerWithEureka: true
+    # Obtener el registro de servicios del servidor Eureka.
+    fetchRegistry: true
+    serviceUrl:
+      # URL del servidor Eureka, incluyendo las credenciales de usuario y contraseña.
+      defaultZone: http://${app.eureka-user}:${app.eureka-password}@${app.eureka-server}/eureka/
+  # Configuración del servidor Eureka.
+  server:
+    # Tiempo de espera en milisegundos cuando la sincronización está vacía.
+    waitTimeInMsWhenSyncEmpty: 0
+    # Intervalo en milisegundos para la actualización de la caché de respuestas.
+    response-cache-update-interval-ms: 5000
+# Configuración del servicio OpenAPI.
+openapi:
+  service:
+    title: "DIMT-Declaracion-Historial-Personal (DEV)"
+    version: 1.0.0
+    url: ${app.gateway-server}
+springdoc:
+  # Ruta para los documentos API.
+  api-docs:
+    path: /mcsv-declaracion-Historial-Personal-dev/v3/api-docs
+  # Ruta para la interfaz Swagger UI.
+  swagger-ui:
+    path: /mcsv-declaracion-Historial-Personal-dev/swagger-ui.html
+# Configuración del nivel de logging.
+logging:
+  level:
+    # Nivel de logging para la seguridad de Spring. DEBUG muestra información detallada útil para el desarrollo y depuración.
+    org.springframework.security: DEBUG
+    # Nivel de logging para el módulo web de Spring. DEBUG muestra información detallada útil para el desarrollo y depuración.
+    org.springframework.web: DEBUG
+    # Nivel de logging global. INFO muestra mensajes informativos que resaltan el progreso de la aplicación en un nivel de granularidad alto.
+    root: INFO
+    # Nivel de logging para el paquete com.example. WARN muestra advertencias que podrían indicar problemas potenciales.
+    com.example: WARN
+    # Nivel de logging para Hibernate. ERROR muestra solo mensajes de error críticos que requieren atención inmediata.
+    org.hibernate: ERROR
+    # Quitar el logging de SQL de Hibernate.
+    org.hibernate.SQL: off
+    # Quitar el logging de SQL de Hibernate.
+    org.hibernate.type.descriptor.sql: off

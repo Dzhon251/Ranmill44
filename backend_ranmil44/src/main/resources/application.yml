@@ -1,0 +1,38 @@
+app.config-server: ${IP_DOMINIO_CONFIG_SERVER:https://dev-micro.ejercito.mil.ec/config-server}
+
+spring:
+  banner:
+    location: MSVC-COT-SAL_EXT-ATRIBUTOS.txt
+
+  config:
+    import: "optional:configserver:"
+  application:
+    name: "mcsv-dimt-dhp"
+  cloud:
+    config:
+      failFast: true
+      retry:
+        initialInterval: 3000
+        multiplier: 1.3
+        maxInterval: 10000
+        maxAttempts: 20
+      uri: ${app.config-server}
+      username: config
+      password: configserver..$
+      profile: ${SPRING_PROFILES_ACTIVE:dev}
+    loadbalancer:
+      cache:
+        enabled: false
+
+logging:
+  level:
+    root: info
+
+# =========================
+# Configuración JasperReports
+# =========================
+jasperserver:
+  url: http://10.20.4.145:8090/jasperserver/rest_v2/reports
+  username: repo_dhp
+  password: dhp123
+

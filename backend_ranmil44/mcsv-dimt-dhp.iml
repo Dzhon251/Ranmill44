@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="b36d2e71-4692-4a44-806c-d243caa44a7b" />
+          <factory-entry name="oracle11gEntityManagerFactory" value="0a98c4d8-b2a3-4aa1-801a-79c0364ef532" />
+          <factory-entry name="oracle19cEntityManagerFactory" value="b36d2e71-4692-4a44-806c-d243caa44a7b" />
+        </datasource-mapping>
+        <naming-strategy-map>
+          <unit-entry name="entityManagerFactory" />
+          <unit-entry name="oracle11gEntityManagerFactory" />
+          <unit-entry name="oracle19cEntityManagerFactory" />
+        </naming-strategy-map>
+      </configuration>
+    </facet>
+  </component>
+</module>

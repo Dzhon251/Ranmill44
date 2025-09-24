@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mcsv-dimt-dhp" />
+        <module name="mcsv-sueldos" />
+        <module name="mcsv-unidades-educativas" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mcsv-derogatoria" target="21" />
+      <module name="mcsv-juridico" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mcsv-derogatoria" options="-parameters" />
+      <module name="mcsv-dimt-dhp" options="-parameters" />
+      <module name="mcsv-juridico" options="-parameters" />
+      <module name="mcsv-sueldos" options="-parameters" />
+      <module name="mcsv-unidades-educativas" options="-parameters" />
+    </option>
+  </component>
+</project>

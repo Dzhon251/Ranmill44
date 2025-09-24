@@ -1,0 +1,77 @@
+app:
+  project.uri: /dev/dimt/dhp/mscv-dimt-dhp
+  keycloak-server: ${IP_DOMINIO_KEYCLOAK_SERVER_PORT:https://qa-sso.ejercito.mil.ec:8443}
+  gateway-server: ${IP_DOMINIO_GATEWAY_SERVER_PORT:https://dev-micro.ejercito.ml.ec:8083}
+  eureka-server: ${IP_DOMINIO_EUREKA_SERVER_PORT:dev-micro.ejercito.mil.ec:8762}
+  eureka-user: ${EUREKA_USER:eureka}
+  eureka-password: ${EUREKA_PASSWORD:eureka2025}
+keycloak:
+  realm: ${KEYCLOAK_REALM_NAME:realm_intern}
+  url: ${app.keycloak-server}
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  application:
+    name: mcsv-dimt-dhp-dev
+  datasource:
+    oracle19c:
+      username: INTELIGENCIA
+      password: PINTELIGENCIA-1915
+      jdbc-url: jdbc:oracle:thin:@10.20.4.20:1539/PRUEBAS
+      driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    oracle11g:
+      database: oracle11g
+      hibernate:
+        ddl-auto: none
+      database-platform: org.hibernate.dialect.OracleDialect
+      properties:
+        hibernate:
+          default_schema: INTELIGENCIA
+    oracle19c:
+      database: oracle19c
+      database-platform: org.hibernate.dialect.OracleDialect
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+            default_schema: INTELIGENCIA
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${keycloak.url}/realms/${keycloak.realm}/protocol/openid-connect/certs
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${app.eureka-user}:${app.eureka-password}@${app.eureka-server}/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    response-cache-update-interval-ms: 5000
+openapi:
+  service:
+    title: " Declaracion de Historial de Personal (DEV)"
+    version: 1.0.0
+    url: ${app.gateway-server}
+springdoc:
+  api-docs:
+    path: /mcsv-dimt-dhp-dev/v3/api-docs
+  swagger-ui:
+    path: /mcsv-dimt-dhp-dev/swagger-ui.html
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

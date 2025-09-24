@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="reLastEntityCreationPackage" value="mcsv-dimt-dhp/src/main/java/ec/mil/ejercito/dimt/dhp/mcsv/dimt/dhp/model/entity/oracle19c" />
+    <option name="reverseEngineeringLastDbConnectionId" value="b36d2e71-4692-4a44-806c-d243caa44a7b" />
+  </component>
+  <component name="JpaPluginProjectSettings">
+    <option name="entityNameTemplate" />
+    <option name="isLombokAllArgsConstructor" value="true" />
+    <option name="isLombokNoArgsConstructor" value="true" />
+    <option name="scaffoldingLanguage" />
+  </component>
+</project>
