@@ -1,0 +1,35 @@
+<div class="flex align-content-end justify-content-end">
+  <img
+    *ngIf="userPhoto"
+    [src]="userPhoto"
+    alt="User Photo"
+    class="rounded-full h-1 w-1 mr-2"
+  />
+  <button
+    pButton
+    type="button"
+    label="{{ nombreUsuario }}"
+    (click)="overlayPanel.toggle($event)"
+  ></button>
+  <p-overlayPanel #overlayPanel>
+        <ul class="flex align-content-start justify-content-start flex-column gap-2 mb-2 list-none p-0 m-0 flex flex-col gap-1" >
+          <li *ngIf="!isAuthenticated" (click)="onLoginClick()">
+            <i class="pi pi-user pi-fw my-2"></i>
+            <button>Iniciar Sesión</button>
+          </li>
+          <li *ngIf="isAuthenticated" (click)="onProfileClick()">
+            <i class="pi pi-user pi-fw"></i>
+            <button>Perfil</button>
+          </li>
+          <li *ngIf="isAuthenticated" (click)="onSettingsClick()">
+            <i class="pi pi-cog pi-fw"></i>
+            <button>Configuración</button>
+          </li>
+          <li *ngIf="isAuthenticated" (click)="onLogoutClick()">
+            <i class="pi pi-power-off pi-fw"></i>
+            <button>Cerrar Sesión</button>
+          </li>
+        </ul>
+  </p-overlayPanel>
+</div>
+

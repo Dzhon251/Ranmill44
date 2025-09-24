@@ -1,0 +1,41 @@
+<p-dialog [(visible)]="visible" (onHide)="onHideDialog()" [modal]="true" [style]="{ width: '50vw' }"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+  header="{{ valorInicial ? 'Editar Valor' : 'Registrar Nuevo Valor' }}">
+  <div class="p-fluid grid">
+    <div class="col-12 field">
+      <label for="valDetalle" class="font-bold text-900">
+        Detalle del Valor <span class="required">*</span>
+      </label>
+      <textarea pInputTextarea id="valDetalle" [(ngModel)]="valorActual.rvaDetalle" rows="3" cols="30"
+        placeholder="Ingrese un breve detalle del valor" [ngClass]="{
+          'ng-invalid ng-dirty':
+            mostrarErroresValidacion && !valorActual.rvaDetalle.trim()
+        }"></textarea>
+      <small class="p-error" *ngIf="mostrarErroresValidacion && !valorActual.rvaDetalle.trim()">El detalle es
+        obligatorio.</small>
+    </div>
+
+    <div class="col-12 field">
+      <label for="rvaCosto" class="font-bold text-900">
+        Observación <span class="required">*</span>
+      </label>
+      <textarea pInputTextarea id="rvaCosto" [(ngModel)]="valorActual.rvaCosto" rows="5" cols="30"
+        placeholder="Describa el valor detalladamente" [ngClass]="{
+          'ng-invalid ng-dirty':
+            mostrarErroresValidacion && !valorActual.rvaCosto
+        }"></textarea>
+      <small class="p-error" *ngIf="mostrarErroresValidacion && !valorActual.rvaCosto">La observación es
+        obligatoria.</small>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
+        (click)="cancelarFormulario()"></p-button>
+      <p-button label="Guardar Valor" icon="pi pi-check" (click)="guardarValor()" [disabled]="
+          !valorActual.rvaDetalle.trim() || !valorActual.rvaCosto
+        "></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="card shadow-6 mt-4">
+    <h2 class="card-title flex justify-content-center">
+        <strong>REGISTRO DE NOVEDADES</strong>
+    </h2>
+
+    <div class="flex justify-content-start mb-3">
+        <p-button label="Agregar Novedad" icon="pi pi-plus" styleClass="p-button-success"
+            (click)="abrirModalAgregarNovedad()"></p-button>
+    </div>
+
+    <div class="card shadow-6">
+        <p-table [value]="listaNovedades" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{ 'min-width': '50rem' }" [loading]="cargando">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">#</th>
+                <th pSortableColumn="novDetalle" style="width: 20%">
+                    Detalle <p-sortIcon field="novDetalle"></p-sortIcon>
+                </th>
+                <th pSortableColumn="novObservacion" style="width: 45%">
+                    Observación <p-sortIcon field="novObservacion"></p-sortIcon>
+                </th>
+                <th pSortableColumn="novEstado" style="width: 15%">
+                    Estado <p-sortIcon field="novEstado"></p-sortIcon>
+                </th>
+                <th style="width: 17rem">Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-novedad let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1 }}</td>
+                <td>{{ novedad.novDetalle }}</td>
+                <td>{{ novedad.novObservacion }}</td>
+                <td>{{novedad.novEstado}}</td>
+                <td>
+                    <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-info mr-2"
+                        (click)="editarNovedad(novedad)"></p-button>
+                    <p-button icon="pi pi-trash" styleClass="p-button-sm p-button-danger"
+                        (click)="eliminarNovedad(novedad.id)"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="empty">
+            <tr>
+                <td colspan="5" class="text-center">No hay novedades registradas.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </div>
+</div>
+
+<app-nuevo-registro-novedad [(visible)]="mostrarModalNovedad" [novedadInicial]="novedadParaEditar"
+    (novedadGuardada)="onNovedadGuardada($event)"></app-nuevo-registro-novedad>

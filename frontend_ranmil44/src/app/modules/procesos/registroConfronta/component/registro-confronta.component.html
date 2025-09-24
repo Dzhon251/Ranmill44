@@ -1,0 +1,21 @@
+<div class="registro-confronta grid">
+  <!-- Cámara -->
+  <div class="col-12 md:col-6">
+    <video id="preview" 
+           style="width: 100%; height: 300px; border: 2px solid #ccc; border-radius: 10px;" 
+           autoplay>
+    </video>
+    <p class="mt-2 font-bold">{{ scanStatus }}</p>
+  </div>
+
+  <!-- Datos del QR -->
+  <div class="col-12 md:col-6 flex align-items-center justify-content-center">
+    <div *ngIf="qrResult; else noData" class="p-4 border-round bg-gray-100 w-full">
+      <h3>Datos del QR:</h3>
+      <pre>{{ qrResult }}</pre>
+    </div>
+    <ng-template #noData>
+      <p>No se ha detectado ningún código QR aún.</p>
+    </ng-template>
+  </div>
+</div>

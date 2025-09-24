@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon multi-color" style="filter: drop-shadow(3px 1px 3px rgba(128, 128, 128, 0.5));">
+  <title>Administrador</title>
+
+  <!-- Icono de engranaje en negro con sombra gris -->
+  <circle cx="12" cy="12" r="3" style="fill: #000000; stroke-width: 2;"></circle>
+  <path d="M12 1v2M12 21v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M1 12h2M21 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" 
+        style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+</svg>

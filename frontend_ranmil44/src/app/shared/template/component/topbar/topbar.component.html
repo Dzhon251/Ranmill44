@@ -1,0 +1,33 @@
+<div class="layout-topbar" [ngClass]="{'border-bottom-none': layoutService.config().topbarTheme !== 'light'}" style="display: flex; justify-content: space-between; align-items: center;">
+  
+
+  <div class="layout-topbar-start" style="display: flex; align-items: center; gap: 10px; flex: 0 0 50%;">
+
+
+    <a #menuButton (click)="onMenuButtonClick()" pRipple>
+      <i class="pi pi-bars icon" style="font-size: 2rem;"></i>
+    </a>
+
+    <a #mobileMenuButton class="layout-topbar-mobile-button" (click)="onMobileTopbarMenuButtonClick()" pRipple>
+      <i class="pi pi-bars text-4xl" style="font-size: 2.5rem;"></i>
+    </a>
+
+    <p class="font-semibold text-sm md:text-xl tracking-tight text-white cursor-pointer" [routerLink]="['']">
+      
+      Rancho Militar "GAE" 44
+    </p>
+  </div>
+
+  
+  <img
+    class="h-2 w-2"
+    [src]="'assets/layout/images/ffaa-logo.svg'"
+    alt="Logo fuerza terrestre Ecuador"
+    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 40px;"
+  />
+
+
+  <div class="layout-topbar-end justify-end" >
+    <app-usuario-menu></app-usuario-menu>
+  </div>
+</div>
