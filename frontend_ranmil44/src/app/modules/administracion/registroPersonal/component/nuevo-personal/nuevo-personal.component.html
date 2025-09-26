@@ -1,73 +1,113 @@
-<p-dialog [(visible)]="visible" (onHide)="onHideDialog()" [modal]="true" [style]="{ width: '50vw' }"
+<p-dialog 
+    [(visible)]="visible" 
+    (onHide)="onHideDialog()" 
+    [modal]="true" 
+    [style]="{ width: '50vw' }"
     [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
     header="{{ esEdicion ? 'Editar Persona' : 'Registrar Nueva Persona' }}">
-    <div class="flex p-fluid grid">
+
+    <div class="p-fluid grid formgrid">
+        
         <!-- Cédula -->
-        <div class="field">
-            <label for="perCedula" class="font-bold text-900 mr-4">
-                Cédula <span class="required">*</span>
-            </label>
-            <input pInputText id="perCedula" [(ngModel)]="personaActual.perCedula" placeholder="Ingrese la cédula"
+        <div class="field col-12 md:col-6">
+            <label for="perCedula" class="font-bold text-900">Cédula <span class="required">*</span></label>
+            <input 
+                pInputText 
+                id="perCedula" 
+                [(ngModel)]="personaActual.perCedula" 
+                placeholder="Ingrese la cédula"
                 [ngClass]="{
-          'ng-invalid ng-dirty': mostrarErroresValidacion && !personaActual.perCedula.trim()
-        }" />
-            <small class="p-error" *ngIf="mostrarErroresValidacion && !personaActual.perCedula.trim()">La cédula es
-                obligatoria.</small>
+                    'ng-invalid ng-dirty': mostrarErroresValidacion && !personaActual.perCedula.trim()
+                }" />
+            <small class="p-error" *ngIf="mostrarErroresValidacion && !personaActual.perCedula.trim()">
+                La cédula es obligatoria.
+            </small>
         </div>
 
         <!-- Grado -->
-        <div class=" field">
-            <label for="perGrado" class="font-bold text-900">
-                Grado <span class="required">*</span>
-            </label>
-            <input pInputText id="perGrado" [(ngModel)]="personaActual.perGrado" placeholder="Ingrese el grado"
+        <div class="field col-12 md:col-6">
+            <label for="perGrado" class="font-bold text-900">Grado <span class="required">*</span></label>
+            <input 
+                pInputText 
+                id="perGrado" 
+                [(ngModel)]="personaActual.perGrado" 
+                placeholder="Ingrese el grado"
                 [ngClass]="{
-          'ng-invalid ng-dirty': mostrarErroresValidacion && !personaActual.perGrado.trim()
-        }" />
-            <small class="p-error" *ngIf="mostrarErroresValidacion && !personaActual.perGrado.trim()">El grado es
-                obligatorio.</small>
+                    'ng-invalid ng-dirty': mostrarErroresValidacion && !personaActual.perGrado.trim()
+                }" />
+            <small class="p-error" *ngIf="mostrarErroresValidacion && !personaActual.perGrado.trim()">
+                El grado es obligatorio.
+            </small>
         </div>
 
         <!-- Arma -->
-        <div class=" field">
+        <div class="field col-12 md:col-6">
             <label for="perArma" class="font-bold text-900">Arma</label>
-            <input pInputText id="perArma" [(ngModel)]="personaActual.perArma" placeholder="Ingrese el arma" />
+            <input 
+                pInputText 
+                id="perArma" 
+                [(ngModel)]="personaActual.perArma" 
+                placeholder="Ingrese el arma" />
         </div>
 
         <!-- Apellidos -->
-        <div class=" field">
+        <div class="field col-12 md:col-6">
             <label for="perApellidos" class="font-bold text-900">Apellidos</label>
-            <input pInputText id="perApellidos" [(ngModel)]="personaActual.perApellidos"
+            <input 
+                pInputText 
+                id="perApellidos" 
+                [(ngModel)]="personaActual.perApellidos"
                 placeholder="Ingrese los apellidos" />
         </div>
 
         <!-- Nombres -->
-        <div class=" field">
+        <div class="field col-12 md:col-6">
             <label for="perNombres" class="font-bold text-900">Nombres</label>
-            <input pInputText id="perNombres" [(ngModel)]="personaActual.perNombres"
+            <input 
+                pInputText 
+                id="perNombres" 
+                [(ngModel)]="personaActual.perNombres"
                 placeholder="Ingrese los nombres" />
         </div>
 
         <!-- Correo -->
-        <div class=" field">
+        <div class="field col-12 md:col-6">
             <label for="perCorreo" class="font-bold text-900">Correo</label>
-            <input pInputText id="perCorreo" [(ngModel)]="personaActual.perCorreo"
-                placeholder="Ingrese el correo electrónico" type="email" />
+            <input 
+                pInputText 
+                id="perCorreo" 
+                [(ngModel)]="personaActual.perCorreo"
+                placeholder="Ingrese el correo electrónico" 
+                type="email" />
         </div>
 
         <!-- Unidad -->
-        <div class=" field">
+        <div class="field col-12 md:col-6">
             <label for="perUnidad" class="font-bold text-900">Unidad</label>
-            <input pInputText id="perUnidad" [(ngModel)]="personaActual.perUnidad" placeholder="Ingrese la unidad" />
+            <input 
+                pInputText 
+                id="perUnidad" 
+                [(ngModel)]="personaActual.perUnidad" 
+                placeholder="Ingrese la unidad" />
         </div>
     </div>
 
     <!-- Footer -->
     <ng-template pTemplate="footer">
         <div class="flex justify-content-end gap-2">
-            <p-button label="Cancelar" icon="pi pi-times" severity="danger" (click)="cancelarFormulario()"></p-button>
-            <p-button label="Guardar" icon="pi pi-check" severity="success" (click)="guardarPersona()"
-                [disabled]="!personaActual.perCedula.trim() || !personaActual.perGrado.trim()"></p-button>
+            <p-button 
+                label="Cancelar" 
+                icon="pi pi-times" 
+                severity="danger" 
+                (click)="cancelarFormulario()">
+            </p-button>
+            <p-button 
+                label="Guardar" 
+                icon="pi pi-check" 
+                severity="success" 
+                (click)="guardarPersona()"
+                [disabled]="!personaActual.perCedula.trim() || !personaActual.perGrado.trim()">
+            </p-button>
         </div>
     </ng-template>
 </p-dialog>

@@ -148,7 +148,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         plugins: {
           title: { 
             display: true, 
-            text: 'Análisis de Costos y Ganancia', 
+            text: '', 
             font: { size: 16 } 
           },
           // tooltip: {

@@ -81,15 +81,16 @@ export class MenuComponent implements OnInit {
                 routerLink: 'procesos/asignacionConsumo',
               },
               {
-                label: 'Registro de confronta',
-                icon: 'pi pi-file',
-                routerLink: 'procesos/registroConfronta',
-              },
-              {
                 label: 'Generación de Tickets',
                 icon: 'pi pi-file',
                 routerLink: 'procesos/GeneracionTicket',
               },
+              {
+                label: 'Registro de confronta',
+                icon: 'pi pi-file',
+                routerLink: 'procesos/registroConfronta',
+              },
+              
             ]
           },
           {
