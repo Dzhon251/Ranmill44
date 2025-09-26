@@ -8,31 +8,31 @@ import { Observable } from 'rxjs';
 })
 export class ReporteIndividualService {
 
-   private apiUrl = environment.DEV_HOST_BACKEND
+  private apiUrl = environment.DEV_HOST_BACKEND
 
-constructor(
+  constructor(
     private http: HttpClient,
   ) { }
 
-   getRepoPerExt(cedula: string): Observable<Blob> {
-      const params = new HttpParams()
-        .set('cedula', cedula)
-        .set('format', 'pdf');
-  
-      return this.http.get(
-        `${this.apiUrl}/dev/dimt/dhp/declaracion_historial_personal/reporteIndividualGae44/cedula`,
-        {
-          params: params,
-          responseType: 'blob'
-        }
-      );
-    }
-  
-    getPdf(params?: any): Observable<Blob> {
-      const cedula = params?.cedula;
-      if (!cedula) {
-        throw new Error('Se requiere el número de cédula');
+  getRepoPerExt(cedula: string): Observable<Blob> {
+    const params = new HttpParams()
+      .set('cedula', cedula)
+      .set('format', 'pdf');
+
+    return this.http.get(
+      `${this.apiUrl}/dev/dimt/dhp/declaracion_historial_personal/reporteIndividualGae44/cedula`,
+      {
+        params: params,
+        responseType: 'blob'
       }
-      return this.getRepoPerExt(cedula);
+    );
+  }
+
+  getPdf(params?: any): Observable<Blob> {
+    const cedula = params?.cedula;
+    if (!cedula) {
+      throw new Error('Se requiere el número de cédula');
     }
+    return this.getRepoPerExt(cedula);
+  }
 }

@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="card shadow-6 mt-4">
+<div class="card shadow-6">
     <h2 class="card-title flex justify-content-center">
         <strong>GENERACIÓN DE TICKETS</strong>
     </h2>
@@ -16,7 +16,12 @@
                 <input id="cedulaInput" type="text" pInputText [(ngModel)]="cedula"
                     placeholder="Ingrese la cédula (10 dígitos)" maxlength="10" (keyup.enter)="buscarDocumento()"
                     (input)="onCedulaChange()" [class]="mostrarErrores ? 'ng-invalid ng-dirty' : ''" />
+
             </div>
+            <small class="text-500">
+                <i class="pi pi-info-circle mr-1"></i>
+                Ingrese el número de cédula de la persona (10 dígitos)
+            </small>
 
             <!-- Mensajes de error -->
             <small *ngIf="mostrarErrores" class="error-message">
@@ -27,11 +32,12 @@
 
         <!-- Botones de acción -->
         <div class="flex justify-content-evenly flex-wrap button-group">
-            <button pButton type="button" label="Buscar Documento" icon="pi pi-search" severity="success" (click)="buscarDocumento()"
-                [disabled]="!cedula || !validarCedula(cedula)" class="primary-button"></button>
+            <button pButton type="button" label="Buscar Documento" icon="pi pi-search" severity="success"
+                (click)="buscarDocumento()" [disabled]="!cedula || !validarCedula(cedula)"
+                class="primary-button"></button>
 
-            <button pButton type="button" label="Limpiar" icon="pi pi-refresh" severity="info" (click)="limpiarFormulario()"
-                class="secondary-button"></button>
+            <button pButton type="button" label="Limpiar" icon="pi pi-refresh" severity="info"
+                (click)="limpiarFormulario()" class="secondary-button"></button>
         </div>
     </div>
 
@@ -51,7 +57,7 @@
     <div *ngIf="!mostrarVisor" class="empty-state">
         <div class="empty-content">
             <h4 class="text-center">Generar ticket</h4>
-            <p>Ingrese el número de cédula del funcionario para visualizar y descargar su Declaración de Honestidad
+            <p class="text-center">Ingrese el número de cédula del funcionario para visualizar y descargar su Declaración de Honestidad
                 Patrimonial</p>
 
         </div>

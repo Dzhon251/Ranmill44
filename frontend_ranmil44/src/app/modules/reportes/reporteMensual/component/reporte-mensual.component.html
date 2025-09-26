@@ -1,8 +1,51 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="card shadow-6 mt-4">
+<div class="card shadow-6">
     <h2 class="card-title flex justify-content-center">
-        <strong>REPORTE MENSUAL - RECIBO</strong>
+        <strong>RECIBO MENSUAL</strong>
     </h2>
+
+    <div class="col-12 p-4">
+        <div class="field">
+            <label for="cedula" class="font-bold text-900">
+                <i class="pi pi-id-card mr-2"></i>
+                Número de Cédula <span class="required">*</span>
+            </label>
+            <input id="cedula" type="text" [(ngModel)]="cedula" placeholder="Ingrese el número de cédula" class="w-full"
+                pInputText [class.p-invalid]="mostrarErrores && !cedula" (keyup.enter)="generarReporte()">
+
+            <small class="error-message" *ngIf="mostrarErrores && !cedula">
+                <i class="pi pi-exclamation-triangle mr-1"></i>
+                Debe ingresar un número de cédula
+            </small>
+
+            <small class="error-message" *ngIf="mostrarErrores && cedula && !validarCedula(cedula)">
+                <i class="pi pi-exclamation-triangle mr-1"></i>
+                La cédula debe tener 10 dígitos numéricos
+            </small>
+
+            <small class="text-500">
+                <i class="pi pi-info-circle mr-1"></i>
+                Ingrese el número de cédula de la persona (10 dígitos)
+            </small>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="flex justify-content-evenly flex-wrap gap-2 mt-3">
+            <button pButton type="button" icon="pi pi-search" label="Generar Reporte" severity="success"
+                (click)="generarReporte()" [disabled]="!cedula">
+            </button>
+            <button pButton type="button" icon="pi pi-refresh" label="Limpiar" severity="info"
+                (click)="limpiarFormulario()">
+            </button>
+
+
+        </div>
+    </div>
+
+    <!-- Visor solo visible cuando se genera reporte -->
+    <div class="p-4" *ngIf="mostrarVisor">
+        <app-visor-pdf-generico [config]="pdfConfig"></app-visor-pdf-generico>
+    </div>
 </div>

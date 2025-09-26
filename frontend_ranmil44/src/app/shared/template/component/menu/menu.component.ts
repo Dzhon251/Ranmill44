@@ -63,6 +63,11 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-users',
                 routerLink: 'administracion/registroValores',
               },
+              {
+                label: 'Registro de Personal',
+                icon: 'pi pi-users',
+                routerLink: 'administracion/registroPersonal',
+              },
             ]
           },
           {
@@ -98,9 +103,9 @@ export class MenuComponent implements OnInit {
                 routerLink: 'reportes/reporteIndividual',
               },
               {
-                label: 'Reporte Mensual',
+                label: 'Recibo',
                 icon: 'pi pi-file',
-                routerLink: 'reportes/reporteMensual',
+                routerLink: 'reportes/recibo',
               },
             ]
           }

@@ -9,7 +9,7 @@ export const ReportesRoute: Routes = [
         component: ReporteIndividualComponent,
     },
     {
-        path: 'reporteMensual',
+        path: 'recibo',
         component: ReporteMensualComponent
     },
 ];

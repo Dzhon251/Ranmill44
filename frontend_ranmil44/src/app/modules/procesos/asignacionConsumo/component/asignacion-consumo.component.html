@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="card shadow-6 mt-4">
+<div class="card shadow-6">
     <h2 class="card-title flex justify-content-center">
         <strong>ASIGNACIÓN DE CONSUMO</strong>
     </h2>
@@ -20,7 +20,7 @@
                     (onSelect)="onFechaSeleccionada()">
                 </p-calendar>
             </div>
-            <p-button class="col" severity="success">GUARDAR</p-button>
+            <p-button class="col" severity="success" (click)="guardarAsignacion()">GUARDAR</p-button>
         </div>
     </div>
 

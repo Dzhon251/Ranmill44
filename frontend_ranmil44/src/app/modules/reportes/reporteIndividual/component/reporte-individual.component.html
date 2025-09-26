@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="card shadow-6 mt-4">
+<div class="card shadow-6">
     <h2 class="card-title flex justify-content-center">
         <strong>REPORTE INDIVIDUAL</strong>
     </h2>
@@ -32,14 +32,15 @@
         </div>
 
         <!-- Botones de acción -->
-        <div class="flex justify-content-end gap-2 mt-3">
-            <button pButton type="button" icon="pi pi-times" label="Limpiar" class="p-button-secondary"
+        <div class="flex justify-content-evenly flex-wrap gap-2 mt-3">
+            <button pButton type="button" icon="pi pi-search" label="Generar Reporte" severity="success"
+                (click)="generarReporte()" [disabled]="!cedula">
+            </button>
+            <button pButton type="button" icon="pi pi-refresh" label="Limpiar" severity="info" 
                 (click)="limpiarFormulario()">
             </button>
 
-            <button pButton type="button" icon="pi pi-search" label="Generar Reporte" class="p-button-primary"
-                (click)="generarReporte()" [disabled]="!cedula">
-            </button>
+            
         </div>
     </div>
 

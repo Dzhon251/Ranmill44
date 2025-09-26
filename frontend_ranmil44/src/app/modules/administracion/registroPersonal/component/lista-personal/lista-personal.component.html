@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="card shadow-6">
+    <h2 class="card-title flex justify-content-center">
+        <strong>REGISTRO DEL PERSONAL</strong>
+    </h2>
+
+    <div class="flex justify-content-start mb-3">
+        <p-button label="Agregar Persona" icon="pi pi-plus" styleClass="p-button-success"
+            (click)="abrirModalAgregarPersona()"></p-button>
+    </div>
+
+    <div class="card shadow-6">
+  <p-table 
+    [value]="ListaPersonal" 
+    [paginator]="true" 
+    [rows]="10" 
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[10, 25, 50]" 
+    [tableStyle]="{ 'min-width': '60rem' }" 
+    [loading]="cargando">
+
+    <!-- Encabezado -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">#</th>
+        <th pSortableColumn="perCedula" style="width: 10%">
+          Cédula <p-sortIcon field="perCedula"></p-sortIcon>
+        </th>
+        <th pSortableColumn="perGrado" style="width: 10%">
+          Grado <p-sortIcon field="perGrado"></p-sortIcon>
+        </th>
+        <th pSortableColumn="perArma" style="width: 10%">
+          Arma <p-sortIcon field="perArma"></p-sortIcon>
+        </th>
+        <th pSortableColumn="perNombres" style="width: 20%">
+          Nombres <p-sortIcon field="perNombres"></p-sortIcon>
+        </th>
+        <th pSortableColumn="perCorreo" style="width: 15%">
+          Correo <p-sortIcon field="perCorreo"></p-sortIcon>
+        </th>
+        <th style="width: 17rem">Acciones</th>
+      </tr>
+    </ng-template>
+
+    <!-- Cuerpo -->
+    <ng-template pTemplate="body" let-persona let-rowIndex="rowIndex">
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ persona.perCedula }}</td>
+        <td>{{ persona.perGrado }}</td>
+        <td>{{ persona.perArma }}</td>
+        <td>{{ persona.perApellidos }} {{ persona.perNombres }}</td>
+        <td>{{ persona.perCorreo }}</td>
+        <td>
+          <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-info mr-2"
+            (click)="editarPersonal(persona)">
+          </p-button>
+          <p-button icon="pi pi-trash" styleClass="p-button-sm p-button-danger"
+            (click)="eliminarPersonal(persona.perCedula)">
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- Mensaje vacío -->
+    <ng-template pTemplate="empty">
+      <tr>
+        <td colspan="8" class="text-center">No hay personal registrado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+</div>
+
+<app-nuevo-personal [(visible)]="mostrarModalPersona" [personaInicial]="personalParaEditar"
+    (personaGuardada)="onPersonaGuardada($event)"></app-nuevo-personal>

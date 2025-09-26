@@ -24,8 +24,8 @@ export class ReporteIndividualComponent {
   ) {
     this.pdfConfig = {
       pdfService: this.reporteIndividualService,
-      fileName: 'reporte_individual_dhp.pdf',
-      documentName: 'REPORTE INDIVIDUAL DHP',
+      fileName: 'reporte_individual.pdf',
+      documentName: 'REPORTE INDIVIDUAL',
       serviceParams: { cedula: '' },
       autoLoad: false,
       showToolbar: true,

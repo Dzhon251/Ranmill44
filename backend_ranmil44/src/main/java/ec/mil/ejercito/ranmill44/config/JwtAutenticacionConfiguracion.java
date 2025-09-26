@@ -1,5 +1,3 @@
-package ec.mil.ejercito.dimt.dhp.mcsv.dimt.dhp.config;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

@@ -5,6 +5,8 @@ export interface AsignacionConsumoModel {
     perGrado: string,
     perArma: string,
     perNombres: string,
+    perApellidos: string;
+    perCorreo: string;
     perUnidad: string,
     novedades: [],
     novedadSeleccionada?: RegistroNovedadesModel;
