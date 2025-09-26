@@ -37,6 +37,18 @@ export class MenuComponent implements OnInit {
 
         items: [
           {
+            path: 'dashboard',
+            label: 'Dashboard',
+            icon: 'pi pi-user',
+            items: [
+              {
+                label: 'Dashboard RanMill44',
+                icon: 'pi pi-users',
+                routerLink: 'dashboard/dashboard',
+              },
+            ]
+          },
+          {
             path: 'administracion',
             label: 'Administración',
             icon: 'pi pi-user',

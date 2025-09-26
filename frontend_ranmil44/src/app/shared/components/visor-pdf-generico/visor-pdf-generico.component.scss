@@ -1,0 +1,418 @@
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$border-color: #dee2e6;
+$shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$border-radius: 6px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-base {
+  padding: 8px 16px;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Contenedor principal
+.pdf-viewer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $light-color;
+  position: relative;
+  
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: white;
+  }
+}
+
+// Barra de herramientas
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: white;
+  border-bottom: 1px solid $border-color;
+  box-shadow: $shadow;
+  z-index: 10;
+  
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .toolbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// Información de cédula
+.cedula-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: rgba($primary-color, 0.1);
+  border: 1px solid rgba($primary-color, 0.2);
+  border-radius: $border-radius;
+  
+  .cedula-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary-color;
+  }
+  
+  .cedula-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark-color;
+    font-family: 'Courier New', monospace;
+  }
+}
+
+// Botones
+.btn {
+  @include button-base;
+  
+  &-primary {
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  
+  &-secondary {
+    background-color: $secondary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+  
+  &-icon {
+    padding: 8px;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: $dark-color;
+    
+    &:hover:not(:disabled) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+  
+  &-floating {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    z-index: 10000;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+// Controles de zoom
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  .zoom-select {
+    padding: 6px 12px;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: white;
+    font-size: 14px;
+    min-width: 80px;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+}
+
+// Navegación de páginas
+.page-navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  .page-info {
+    font-size: 14px;
+    color: $dark-color;
+    font-weight: 500;
+    min-width: 120px;
+    text-align: center;
+  }
+}
+
+// Contenedor del PDF
+.pdf-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+// Visualizador de PDF
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  
+  .pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
+    transform-origin: top left;
+  }
+}
+
+// Estados de carga y error
+.loading-overlay,
+.error-message {
+  @include flex-center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5;
+}
+
+.loading-spinner {
+  @include flex-center;
+  flex-direction: column;
+  gap: 16px;
+  
+  i {
+    font-size: 48px;
+    color: $primary-color;
+  }
+  
+  p {
+    font-size: 16px;
+    color: $dark-color;
+    margin: 0;
+  }
+}
+
+.error-message {
+  flex-direction: column;
+  gap: 12px;
+  
+  i {
+    font-size: 48px;
+    color: $danger-color;
+  }
+  
+  p {
+    font-size: 16px;
+    color: $dark-color;
+    margin: 0;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.5;
+  }
+}
+
+// Estado vacío
+.empty-state {
+  @include flex-center;
+  height: 100%;
+  
+  .empty-content {
+    text-align: center;
+    max-width: 400px;
+    padding: 40px;
+    
+    .empty-icon {
+      font-size: 64px;
+      color: $secondary-color;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      font-size: 24px;
+      color: $dark-color;
+      margin: 0 0 12px 0;
+    }
+    
+    p {
+      font-size: 16px;
+      color: $secondary-color;
+      margin: 0 0 24px 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Controles flotantes
+.floating-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    
+    .toolbar-left,
+    .toolbar-right {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .toolbar-center {
+      order: 3;
+    }
+  }
+  
+  .cedula-info {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    
+    .cedula-label,
+    .cedula-value {
+      font-size: 12px;
+    }
+  }
+  
+  .page-navigation {
+    .page-info {
+      min-width: auto;
+      font-size: 12px;
+    }
+  }
+  
+  .zoom-controls {
+    .zoom-select {
+      min-width: 60px;
+      font-size: 12px;
+    }
+  }
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pdf-viewer-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Mejoras de accesibilidad
+.btn:focus,
+.zoom-select:focus {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Soporte para modo oscuro
+@media (prefers-color-scheme: dark) {
+  .pdf-viewer-container {
+    background-color: #1a1a1a;
+  }
+  
+  .toolbar {
+    background-color: #2d2d2d;
+    border-bottom-color: #404040;
+  }
+  
+  .cedula-info {
+    background-color: rgba($primary-color, 0.2);
+    border-color: rgba($primary-color, 0.3);
+    
+    .cedula-value {
+      color: #e0e0e0;
+    }
+  }
+  
+  .pdf-content {
+    background-color: #1a1a1a;
+  }
+  
+  .btn-icon {
+    color: #e0e0e0;
+    
+    &:hover:not(:disabled) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  .page-info {
+    color: #e0e0e0;
+  }
+  
+  .zoom-select {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+}
+
